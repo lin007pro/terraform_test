@@ -52,12 +52,12 @@ variable "test_map" {
 }
 
 resource "aws_instance" "vmttest" {
-  ami           = "var.amis[var.ami_type]"
+  ami           = "${var.amis[${var.ami_type}]}"
   instance_type = "${var.instance}"
   count         = "${var.group_size}"
 }
 
 resource "aws_instance" "vmttest_single" {
-  ami           = "var.amis[var.ami_type]"
+  ami           = "${var.amis[${var.ami_type}]}"
   instance_type = "var.instance_single"
 }
