@@ -13,10 +13,6 @@ terraform {
 
 provider "aws" {
   region                  = "us-east-2"
-//  shared_credentials_file = "/home/mborodia/.aws/credentials"
-//  profile                 = "terraform"
-  access_key = "AKIASZZINMS6SZLQJZLY"
-  secret_key = "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"
 }
 
 variable "instance" {
