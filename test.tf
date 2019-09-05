@@ -69,5 +69,5 @@ resource "aws_instance" "vmttest" {
 
 resource "aws_instance" "vmttest_single" {
   ami           = lookup("${var.amis}", "${var.ami_type}", "none")
-  instance_type = "var.instance_single"
+  instance_type = "${var.instance_single}"
 }
