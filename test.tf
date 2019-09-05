@@ -11,8 +11,18 @@ terraform {
   }
 }
 
+variable "aws-access-key" {
+  type = "string"
+}
+
+variable "aws-secret-key" {
+  type = "string"
+}
+
 provider "aws" {
-  region                  = "us-east-2"
+  region = "us-east-2"
+  access_key = "${var.aws-access-key}"
+  secret_key = "${var.aws-secret-key}"
 }
 
 variable "instance" {
@@ -52,12 +62,12 @@ variable "test_map" {
 }
 
 resource "aws_instance" "vmttest" {
-  ami           = "${var.amis[${var.ami_type}]}"
+  ami           = lookup("${var.amis}", "${var.ami_type}", "none")
   instance_type = "${var.instance}"
   count         = "${var.group_size}"
 }
 
 resource "aws_instance" "vmttest_single" {
-  ami           = "${var.amis[${var.ami_type}]}"
+  ami           = lookup("${var.amis}", "${var.ami_type}", "none")
   instance_type = "var.instance_single"
 }
